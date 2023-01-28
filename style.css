@@ -1,16 +1,13 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
 body {
   font-family: "Open Sans", sans-serif;
   font-size: 16px;
   line-height: 1;
-}
-
-textarea {
-  background: transparent;
-  border: none;
-  resize: none;
-  color: #000000;
-  border-left: 1px solid black;
-  padding: 10px;
 }
 
 .jumbotron {
@@ -28,20 +25,45 @@ textarea {
   border-radius: 15px;
 }
 
+/* SCHEDULER
+-------------------------------------------------- */
+
+.row {
+  white-space: pre-wrap;
+  height: 60px;
+  border-top: 1px solid white;
+}
+
 .cell {
   padding: 8px 10px;
 }
 
+/* TEXT AREA
+-------------------------------------------------- */
+
 .description {
+  padding: 0;
   white-space: pre-wrap;
   text-align: left;
+  display: flex;
+  justify-content: start;
+  align-items: center;
 }
 
-.row {
-  white-space: pre-wrap;
-  height: 80px;
-  border-top: 1px solid white;
+.form {
+  background: transparent;
+  border: none;
+  height: 100%;
+  margin: 0;
+  width: 100%;
+  border-left: 1px solid black;
+  padding: 10px;
+  color: #000;
 }
+
+/* .input-group {
+  margin-top: 20px;
+} */
 
 .hour {
   background-color: fff;
