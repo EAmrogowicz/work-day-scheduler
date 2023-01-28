@@ -87,16 +87,21 @@ body {
   color: white;
 }
 
-.saveBtn {
+.save {
   border-left: 1px solid black;
   border-top-right-radius: 15px;
   border-bottom-right-radius: 15px;
   background-color: #06aed5;
-  color: white;
-  font-size: 1.8rem;
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.saveBtn {
+  background: transparent;
+  border: none;
+  color: white;
+  font-size: 1.8rem;
 }
 
 .saveBtn i:hover {
