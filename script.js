@@ -2,7 +2,7 @@ const currentDay = moment().format("dddd, MMMM Do");
 const currentTime = moment().hour();
 
 const timeBlockEl = $(".time-block");
-const businessHours = 12;
+const businessHours = 9;
 
 const checkHour = (t, change) => {
   if (t === currentTime) {
@@ -29,7 +29,6 @@ if (schedule == null || schedule.day !== currentDay) {
 }
 
 for (let i = 0; i < businessHours; i++) {
-  // Create a new `<div>` for each ability and its text content
   const divEl = $("<div>").addClass("row");
 
   const divTimeEl = $("<div>").addClass("col-2 cell hour");
