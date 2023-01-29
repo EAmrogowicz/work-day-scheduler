@@ -1,10 +1,32 @@
-const currentDayEl = moment().format("dddd, MMMM Do");
-const currentTimeEl = moment().hour();
+const currentDay = moment().format("dddd, MMMM Do");
+const currentTime = moment().hour();
 
 const timeBlockEl = $(".time-block");
 const businessHours = 12;
 
-$("#currentDay").text(currentDayEl);
+const checkHour = (t, change) => {
+  if (t === currentTime) {
+    change.addClass("present");
+  }
+  if (t < currentTime) {
+    change.addClass("past");
+  }
+  if (t > currentTime) {
+    change.addClass("future");
+  }
+};
+
+$("#currentDay").text(currentDay);
+
+// downloads data from local storage
+let schedule = JSON.parse(localStorage.getItem("schedule"));
+
+if (schedule == null || schedule.day !== currentDay) {
+  schedule = {
+    day: currentDay,
+    hourPlans: Array(businessHours),
+  };
+}
 
 for (let i = 0; i < businessHours; i++) {
   // Create a new `<div>` for each ability and its text content
@@ -20,7 +42,7 @@ for (let i = 0; i < businessHours; i++) {
   checkHour(plannerTime, divTextEl);
 
   const inputTextEl = $("<input>").addClass("form");
-  inputTextEl.val(schedule[i]);
+  inputTextEl.val(schedule.hourPlans[i]);
 
   const divBtnEl = $("<div>").addClass("col-1 cell save");
   const saveBtnEl = $("<button>").addClass("saveBtn");
@@ -40,6 +62,8 @@ for (let i = 0; i < businessHours; i++) {
 
     // select form element and get its value
     const inputValue = inputTextEl.val();
-    schedule[i] = inputValue;
+    schedule.hourPlans[i] = inputValue;
+
+    localStorage.setItem("schedule", JSON.stringify(schedule));
   });
 }
