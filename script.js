@@ -4,7 +4,7 @@ const currentTime = moment().hour();
 const timeBlockEl = $(".time-block");
 const businessHours = 9;
 
-// checks what time is to color the time blocks
+// checks what time and color code time slots accordingly
 const checkHour = (t, change) => {
   if (t === currentTime) {
     change.addClass("present");
@@ -30,7 +30,7 @@ if (schedule == null || schedule.day !== currentDay) {
   };
 }
 
-// creates time blocks
+// creates time block
 for (let i = 0; i < businessHours; i++) {
   const divEl = $("<div>").addClass("row");
 
@@ -57,7 +57,7 @@ for (let i = 0; i < businessHours; i++) {
 
   timeBlockEl.append(divEl);
 
-  //runs function to check what hours is to color code the time blocks per each of the block
+  //runs function to check what hours is to color code the time slots
   checkHour(plannerTime, divTextEl);
 
   //event listener on click to save data to local storage
