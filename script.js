@@ -4,6 +4,7 @@ const currentTime = moment().hour();
 const timeBlockEl = $(".time-block");
 const businessHours = 9;
 
+// checks what time is to color the time blocks
 const checkHour = (t, change) => {
   if (t === currentTime) {
     change.addClass("present");
@@ -16,11 +17,12 @@ const checkHour = (t, change) => {
   }
 };
 
+// prints current date
 $("#currentDay").text(currentDay);
 
 // downloads data from local storage
 let schedule = JSON.parse(localStorage.getItem("schedule"));
-
+// checks if there is something already saved in local storage
 if (schedule == null || schedule.day !== currentDay) {
   schedule = {
     day: currentDay,
@@ -28,6 +30,7 @@ if (schedule == null || schedule.day !== currentDay) {
   };
 }
 
+// creates time blocks
 for (let i = 0; i < businessHours; i++) {
   const divEl = $("<div>").addClass("row");
 
@@ -37,8 +40,6 @@ for (let i = 0; i < businessHours; i++) {
   divTimeEl.text(plannerTimePrint);
 
   const divTextEl = $("<div>").addClass("col-9 description");
-
-  checkHour(plannerTime, divTextEl);
 
   const inputTextEl = $("<input>").addClass("form");
   inputTextEl.val(schedule.hourPlans[i]);
@@ -56,6 +57,10 @@ for (let i = 0; i < businessHours; i++) {
 
   timeBlockEl.append(divEl);
 
+  //runs function to check what hours is to color code the time blocks per each of the block
+  checkHour(plannerTime, divTextEl);
+
+  //event listener on click to save data to local storage
   saveBtnEl.on("click", function (e) {
     e.preventDefault();
 
